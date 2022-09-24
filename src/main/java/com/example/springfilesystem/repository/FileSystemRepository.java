@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
+import java.util.UUID;
 
 @Repository
 public class FileSystemRepository {
@@ -24,5 +25,9 @@ public class FileSystemRepository {
 
     public FileSystemResource find(String location) {
         return new FileSystemResource(Paths.get(location));
+    }
+
+    public void delete(String location) throws IOException {
+        Files.delete(Paths.get(location));
     }
 }
