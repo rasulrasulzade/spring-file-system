@@ -1,0 +1,12 @@
+version: "2.2"
+
+services:
+  mysql:
+    image: mysql:8.0.30
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: Mysql@123
+    volumes:
+      - "./src/main/resources/sql/schema.sql:/docker-entrypoint-initdb.d/1.sql"
