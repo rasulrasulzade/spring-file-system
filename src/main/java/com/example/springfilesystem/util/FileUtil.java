@@ -1,7 +1,7 @@
 package com.example.springfilesystem.util;
 
 public class FileUtil {
-    public String[] getFileParts(String file) {
+    public static String[] getFileParts(String file) {
         String[] arr = {"", ""};
         if (!file.contains(".")) return arr;
         int lastPintIndex = file.lastIndexOf(".");
