@@ -33,6 +33,3 @@ services:
       MYSQL_PASSWORD: $MYSQLDB_PASSWORD
     volumes:
       - ./uploads:/uploads
-
-volumes:
-  uploads:
