@@ -13,3 +13,26 @@ services:
         - $MYSQLDB_LOCAL_PORT:$MYSQLDB_LOCAL_PORT
     volumes:
       - "./src/main/resources/sql/schema.sql:/docker-entrypoint-initdb.d/1.sql"
+      - "./db:/var/lib/mysql"
+
+  filesys:
+    depends_on:
+      - mysqldb
+    image: filesys
+    container_name: file-system
+    build: .
+    restart: on-failure
+    env_file: ./.env
+    ports:
+      - $SPRING_LOCAL_PORT:$SPRING_DOCKER_PORT
+    environment:
+      MYSQL_HOST: mysqldb
+      MYSQL_PORT: $MYSQLDB_DOCKER_PORT
+      MYSQL_DATABASE: $MYSQLDB_DATABASE
+      MYSQL_USER: $MYSQLDB_USER
+      MYSQL_PASSWORD: $MYSQLDB_PASSWORD
+    volumes:
+      - ./uploads:/uploads
+
+volumes:
+  uploads:

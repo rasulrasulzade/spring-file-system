@@ -1,7 +1,37 @@
 # spring-file-system
 
-docker-compose up
+start db and application <br/>
+docker-compose up --build
 
-docker build -t filesys .
+POST /files
+```aidl
+response 
+{
+    "id": 1
+}
+```
 
-docker run --rm -it --name file-system -v "$(pwd)/uploads:/app/uploads" -p 8080:8080 filesys:latest
+GET /files
+```aidl
+response 
+{
+    "files": [
+        {
+            "id": 1,
+            "name": "test.pdf",
+            "size": 142316
+        },
+        {
+            "id": 2,
+            "name": "test2.pdf",
+            "size": 120855
+        }
+    ]
+}
+```
+
+GET /files/{id} <br/>
+response type filestream
+
+DELETE /files/{id} <br/>
+response void
